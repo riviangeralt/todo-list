@@ -61,6 +61,7 @@ class HomeViewModel extends GetxController {
       await TodoRepository().deleteTodo(id);
       fetchTodayTodos();
       fetchTomorrowTodos();
+      fetchUpcomingTodos();
     } catch (e) {
       log('Error removeTodo: $e');
     }

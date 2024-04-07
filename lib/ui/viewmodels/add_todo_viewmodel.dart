@@ -38,6 +38,7 @@ class AddTodoViewModel extends GetxController {
       }
       homeController.fetchTodayTodos();
       homeController.fetchTomorrowTodos();
+      homeController.fetchUpcomingTodos();
       Get.back();
 
       Get.snackbar(
