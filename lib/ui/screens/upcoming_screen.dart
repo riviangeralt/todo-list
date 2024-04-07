@@ -11,7 +11,7 @@ class UpcomingScreen extends StatelessWidget {
     HomeViewModel controller = Get.find();
     return Obx(
       () => TodoListView(
-        list: controller.todayTodos.toList(),
+        list: controller.upcomingTodos.toList(),
         onDelete: controller.removeTodo,
         onEdit: controller.editTodo,
       ),

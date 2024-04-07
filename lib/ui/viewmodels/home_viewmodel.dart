@@ -12,6 +12,7 @@ class HomeViewModel extends GetxController {
   RxnInt selectedTodo = RxnInt();
   RxList<TodoModel> todayTodos = <TodoModel>[].obs;
   RxList<TodoModel> tomorrowTodos = <TodoModel>[].obs;
+  RxList<TodoModel> upcomingTodos = <TodoModel>[].obs;
 
   void onTabChanged(int index) {
     selectedIndex.value = index;
@@ -46,6 +47,15 @@ class HomeViewModel extends GetxController {
     }
   }
 
+  void fetchUpcomingTodos() async {
+    try {
+      List<TodoModel> todos = await TodoRepository().getUpcomingTodos();
+      upcomingTodos.value = todos.obs;
+    } catch (e) {
+      log('Error fetching upcoming todos: $e');
+    }
+  }
+
   void removeTodo(int id) async {
     try {
       await TodoRepository().deleteTodo(id);
@@ -70,5 +80,6 @@ class HomeViewModel extends GetxController {
     super.onInit();
     fetchTodayTodos();
     fetchTomorrowTodos();
+    fetchUpcomingTodos();
   }
 }
